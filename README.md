@@ -1,6 +1,8 @@
 # EXPERIMENT--03-SIMULATION-OF-PUSHBUTTON-AND-LED INTERFACE WITH ARM CONTROLLER AND PROTEUS 
-## Aim: To Interface a Digital output (LED) and Digital input (Pushbutton) to ARM development board , and simulate it in Proteus 
-## Components required: STM32 CUBE IDE, Proteus 8 simulator .
+## Aim: 
+To Interface a Digital output (LED) and Digital input (Pushbutton) to ARM development board , and simulate it in Proteus 
+## Components required: 
+STM32 CUBE IDE, Proteus 8 simulator .
 ## Theory 
 The full form of an ARM is an advanced reduced instruction set computer (RISC) machine, and it is a 32-bit processor architecture expanded by ARM holdings. The applications of an ARM processor include several microcontrollers as well as processors. The architecture of an ARM processor was licensed by many corporations for designing ARM processor-based SoC products and CPUs. This allows the corporations to manufacture their products using ARM architecture. Likewise, all main semiconductor companies will make ARM-based SOCs such as Samsung, Atmel, TI etc.
 
@@ -72,17 +74,37 @@ We are now at the last part of step by step guide on how to simulate STM32 proje
 
 ## STM 32 CUBE PROGRAM :
 
+#include "main.h" #include <stdbool.h>
 
+void SystemClock_Config(void); static void MX_GPIO_Init(void); void push_button(); bool button_status;
+
+int main(void) {
+
+HAL_Init();
+
+SystemClock_Config();
+
+MX_GPIO_Init();
+
+void push_button() { button_status = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_4); if (button_status == 0) { HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET); HAL_Delay(500); } else { HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_RESET); HAL_Delay(500); } }
+
+while (1) { push_button(); } }
+
+#endif
 
 
 ## Output screen shots of proteus  :
 
+![318109537-b1ae4738-9f8f-47a9-8564-4db157d7292a](https://github.com/nivetharajaa/EXPERIMENT--03-SIMULATION-OF-PUSHBUTTON-AND-LED-WITH-PROTEUS-/assets/120543388/83a744d7-b430-42f9-98a4-346245cd0e3f)
 
+
+![318109577-a1b42a96-c698-4837-bd42-59121377827f](https://github.com/nivetharajaa/EXPERIMENT--03-SIMULATION-OF-PUSHBUTTON-AND-LED-WITH-PROTEUS-/assets/120543388/f50ab55a-24ee-424a-b98a-465fbb43b174)
 
 
 ## Proteus layout(Add pdf screen shot of circuit here)
  
- 
+ ![318109621-4b50138e-4564-4514-aa5d-b36daa33d00a](https://github.com/nivetharajaa/EXPERIMENT--03-SIMULATION-OF-PUSHBUTTON-AND-LED-WITH-PROTEUS-/assets/120543388/cfb38102-1453-44b5-ac7e-6be401321c88)
+
  
  
 ## Result :
